@@ -40,8 +40,6 @@ public class AlunoDto extends BaseEntityDto<Aluno> {
         aluno.setDataNascimento(this.getDataNascimento());
         aluno.setCpf(this.getCpf());
         aluno.setSituacao(this.getSituacao());
-        aluno.setUpdatedAt(this.getUpdatedAt());
-        aluno.setCreatedAt(this.getCreatedAt());
         return aluno;
     }
 }
