@@ -5,6 +5,7 @@ import com.robert.martins.courses_ui.infrastructure.vo.enums.SituacaoAluno;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,16 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
     Boolean existsByCpf(String cpf);
 
     Boolean existsByCpfAndIdNot(String cpf, Integer id);
+
+    @Modifying
+    @Query(
+            value = "UPDATE tb_alunos SET curso_id = :cursoId WHERE id = :id",
+            nativeQuery = true
+    )
+    void enroll(
+            @Param("id") Integer id,
+            @Param("cursoId") Integer cursoId
+    );
 
     @Query(
             value = "SELECT * FROM tb_alunos a " +
