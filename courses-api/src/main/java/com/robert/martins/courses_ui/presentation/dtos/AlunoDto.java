@@ -31,6 +31,8 @@ public class AlunoDto extends BaseEntityDto<Aluno> {
     @NotNull
     private SituacaoAluno situacao;
 
+    @NotNull
+    private Integer cursoId;
 
     @Override
     public Aluno mapDtoToEntity() {
