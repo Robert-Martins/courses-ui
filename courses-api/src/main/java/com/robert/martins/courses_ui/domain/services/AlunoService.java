@@ -27,6 +27,8 @@ public class AlunoService implements IAlunoService {
 
     private static final String STUDENT_WITH_CPF_ALREADY_EXISTS = "Aluno com CPF %s já cadastrado";
 
+    private static final String ID_MUST_NOT_BE_INFORMED = "Id não deve ser informado";
+
     private static final String ID_NOT_INFORMED = "Id não informado";
 
     private static final String COURSE_ID_NOT_INFORMED = "Id do curso não informado";
@@ -37,6 +39,7 @@ public class AlunoService implements IAlunoService {
 
     @Override
     public AlunoDto create(AlunoDto alunoDto) {
+        this.validateStudentMustNotHaveId(alunoDto.getId());
         this.validateStudentCpf(alunoDto.getCpf());
         this.validateCourseId(alunoDto.getCursoId());
         Aluno aluno = this.alunoRepository.save(alunoDto.mapDtoToEntity());
@@ -67,7 +70,7 @@ public class AlunoService implements IAlunoService {
     public Boolean existsByCpf(String cpf, Integer id) {
         return Optional.ofNullable(id)
                 .map(i -> this.alunoRepository.existsByCpfAndIdNot(cpf, i))
-                .orElse(this.existsByCpf(cpf));
+                .orElse(this.alunoRepository.existsByCpf(cpf));
     }
 
     @Override
@@ -88,6 +91,13 @@ public class AlunoService implements IAlunoService {
         this.alunoRepository.deleteById(id);
     }
 
+    private void validateStudentMustNotHaveId(Integer id) {
+        Functions.acceptFalseThrows(
+                id == null,
+                () -> new BadRequestException(ID_MUST_NOT_BE_INFORMED)
+        );
+    }
+
     private void validateStudentId(Integer id) {
         Functions.ifEmptyThrows(
                 id,
@@ -101,7 +111,7 @@ public class AlunoService implements IAlunoService {
 
     private void validateStudentCpf(String cpf) {
         Functions.acceptTrueThrows(
-                this.existsByCpf(cpf),
+                this.alunoRepository.existsByCpf(cpf),
                 () -> new DuplicateKeyException(String.format(STUDENT_WITH_CPF_ALREADY_EXISTS, cpf))
         );
     }
@@ -116,10 +126,6 @@ public class AlunoService implements IAlunoService {
     private Aluno findStudentById(Integer id) {
         return this.alunoRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(STUDENT_NOT_FOUND));
-    }
-
-    private Boolean existsByCpf(String cpf) {
-        return this.alunoRepository.existsByCpf(cpf);
     }
 
     private void validateCourseId(Integer cursoId) {
