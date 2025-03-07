@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+}
+
+a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    color: var(--mat-sys-secondary);
+    text-decoration: none;
+}
