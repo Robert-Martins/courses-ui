@@ -11,7 +11,7 @@ import { Optional } from '../utils/optional';
 })
 export class AlunoService {
 
-  private readonly ALUNO_API_PATH: '/alunos';
+  private readonly ALUNO_API_PATH: string = 'alunos';
 
   private alunoApiUrl: string;
 

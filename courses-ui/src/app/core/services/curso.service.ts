@@ -11,7 +11,7 @@ import { Optional } from '../utils/optional';
 })
 export class CursoService {
 
-  private CURSO_API_PATH: '/cursos';
+  private CURSO_API_PATH: string = 'cursos';
 
   private cursoApiUrl: string;
 

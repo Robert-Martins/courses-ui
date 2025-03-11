@@ -9,7 +9,7 @@ import { Enum } from '../types/types';
 })
 export class ApplicationService {
 
-  private readonly APP_PATH: '/app';
+  private readonly APP_PATH: string = 'app';
 
   private appApiUrl: string;
 
@@ -17,14 +17,15 @@ export class ApplicationService {
     private readonly httpClient: HttpClient
   ) { 
     this.appApiUrl = `${environment.apiUrl}/${this.APP_PATH}`;
+    console.log(this.appApiUrl);
   }
 
   public health(): Observable<string> {
     return this.httpClient.get<string>(this.appApiUrl);
   }
 
-  public findEnumByName(name: string): Observable<Enum> {
-    return this.httpClient.get<Enum>(`${this.appApiUrl}/enums/${name}`);
+  public findEnumByName(name: string): Observable<Enum[]> {
+    return this.httpClient.get<Enum[]>(`${this.appApiUrl}/enums/${name}`);
   }
 
 }
