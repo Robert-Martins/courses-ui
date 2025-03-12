@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from './forms/forms.module';
+import { AlunoFilterComponent } from './aluno-filter/aluno-filter.component';
 
 
 
@@ -8,10 +8,10 @@ import { FormsModule } from './forms/forms.module';
   declarations: [],
   imports: [
     CommonModule,
-    FormsModule
+    AlunoFilterComponent
   ],
   exports: [
-    FormsModule
+    AlunoFilterComponent
   ]
 })
-export class MoleculesModule { }
+export class FormsModule { }
