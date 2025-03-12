@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h3 {
+    font-family: var(--mat-sys-title-large-font);
+    font-size: var(--mat-sys-title-large-size);
+    line-height: var(--mat-sys-title-large-line-height);
+    font-weight: var(--mat-sys-title-large-weight);
+    letter-spacing: var(--mat-sys-title-large-tracking);
+}
