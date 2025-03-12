@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from './forms/forms.module';
+import { ListsModule } from './lists/lists.module';
 
 
 
@@ -8,10 +9,12 @@ import { FormsModule } from './forms/forms.module';
   declarations: [],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ListsModule
   ],
   exports: [
-    FormsModule
+    FormsModule,
+    ListsModule
   ]
 })
 export class MoleculesModule { }
