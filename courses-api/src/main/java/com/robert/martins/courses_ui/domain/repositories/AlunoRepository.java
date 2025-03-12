@@ -21,7 +21,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
 
     @Modifying
     @Query(
-            value = "UPDATE tb_alunos SET curso_id = :cursoId WHERE id = :id",
+            value = "UPDATE tb_alunos SET id_curso = :cursoId WHERE id = :id",
             nativeQuery = true
     )
     void enroll(
@@ -37,7 +37,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
                     "(:dataNascimento IS NULL OR a.data_nascimento = :dataNascimento) AND " +
                     "(:cpf IS NULL OR :cpf = '' OR a.cpf = :cpf) AND " +
                     "(:situacao IS NULL OR a.situacao = :situacao) AND " +
-                    "(:cursoId IS NULL OR a.curso_id = :cursoId)",
+                    "(:cursoId IS NULL OR a.id_curso = :cursoId)",
             nativeQuery = true
     )
     Page<Aluno> findAll(
