@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlunoFilterComponent } from './aluno-filter/aluno-filter.component';
+import { CursoFilterComponent } from './curso-filter/curso-filter.component';
 
 
 
@@ -8,10 +9,12 @@ import { AlunoFilterComponent } from './aluno-filter/aluno-filter.component';
   declarations: [],
   imports: [
     CommonModule,
-    AlunoFilterComponent
+    AlunoFilterComponent,
+    CursoFilterComponent
   ],
   exports: [
-    AlunoFilterComponent
+    AlunoFilterComponent,
+    CursoFilterComponent
   ]
 })
 export class FormsModule { }

@@ -1,0 +1,26 @@
+<form *ngIf="filterForm$ | async as filterForm" [formGroup]="filterForm">
+    <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput placeholder="ID" formControlName="id">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Início das Aulas</mat-label>
+        <input matInput [matDatepicker]="inicioAulasPicker" placeholder="Início das Aulas" formControlName="inicioAulas">
+        <mat-datepicker-toggle matSuffix [for]="inicioAulasPicker"></mat-datepicker-toggle>
+        <mat-datepicker #inicioAulasPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Fim das Aulas</mat-label>
+        <input matInput [matDatepicker]="fimAulasPicker" placeholder="Fim das Aulas" formControlName="fimAulas">
+        <mat-datepicker-toggle matSuffix [for]="fimAulasPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fimAulasPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-radio-group formControlName="ativo">
+        <mat-radio-button [value]="true">Ativo</mat-radio-button>
+        <mat-radio-button [value]="false">Inativo</mat-radio-button>
+    </mat-radio-group>
+</form>
