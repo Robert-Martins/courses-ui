@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlunoFormComponent } from '../../molecules/forms/aluno-form/aluno-form.component';
+import { AlunoFormDialogComponent } from './aluno-form-dialog/aluno-form-dialog.component';
+import { CursoFormDialogComponent } from './curso-form-dialog/curso-form-dialog.component';
 
 
 
@@ -8,10 +9,12 @@ import { AlunoFormComponent } from '../../molecules/forms/aluno-form/aluno-form.
   declarations: [],
   imports: [
     CommonModule,
-    AlunoFormComponent
+    AlunoFormDialogComponent,
+    CursoFormDialogComponent
   ],
   exports: [
-    AlunoFormComponent
+    AlunoFormDialogComponent,
+    CursoFormDialogComponent
   ]
 })
 export class DialogsModule { }
