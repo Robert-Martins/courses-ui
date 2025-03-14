@@ -1,0 +1,49 @@
+<ng-container *ngIf="cursoForm$ | async as cursoForm" [formGroup]="cursoForm">
+    @if (created) {
+        <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="ID" formControlName="id" readonly>
+        </mat-form-field>
+    }
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome">
+        @if (cursoForm.get('nome').hasError('required') && cursoForm.get('nome').touched) {
+            <mat-error>Nome é obrigatório</mat-error>
+        }
+        @else if (cursoForm.get('nome').hasError('minlength') && cursoForm.get('nome').touched) {
+            <mat-error>Nome deve ter no mínimo 10 caracteres</mat-error>
+        }
+        @else if (cursoForm.get('nome').hasError('maxlength') && cursoForm.get('nome').touched) {
+            <mat-error>Nome deve ter no máximo 100 caracteres</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Início das Aulas</mat-label>
+        <input matInput [matDatepicker]="inicioAulasPicker" placeholder="Início das Aulas" formControlName="inicioAulas">
+        <mat-datepicker-toggle matSuffix [for]="inicioAulasPicker"></mat-datepicker-toggle>
+        <mat-datepicker #inicioAulasPicker></mat-datepicker>
+        @if (
+            cursoForm.get('inicioAulas').hasError('required') &&
+            cursoForm.get('inicioAulas').touched
+        ) {
+            <mat-error>Início das Aulas é obrigatório</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Fim das Aulas</mat-label>
+        <input matInput [matDatepicker]="fimAulasPicker" placeholder="Fim das Aulas" formControlName="fimAulas">
+        <mat-datepicker-toggle matSuffix [for]="fimAulasPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fimAulasPicker></mat-datepicker>
+        @if (
+            cursoForm.get('fimAulas').hasError('required') &&
+            cursoForm.get('fimAulas').touched
+        ) {
+            <mat-error>Fim das Aulas é obrigatório</mat-error>
+        }
+    </mat-form-field>
+    <mat-radio-group formControlName="ativo">
+        <mat-radio-button [value]="true">Ativo</mat-radio-button>
+        <mat-radio-button [value]="false">Inativo</mat-radio-button>
+    </mat-radio-group>
+</ng-container>
