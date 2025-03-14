@@ -1,11 +1,17 @@
 <form *ngIf="filterForm$ | async as filterForm" [formGroup]="filterForm">
     <mat-form-field>
         <mat-label>ID</mat-label>
-        <input matInput placeholder="ID" formControlName="id">
+        <input matInput placeholder="ID" formControlName="id" type="number">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="nome">
+        @if (filterForm.get('nome').hasError('minlength') && filterForm.get('nome').touched) {
+            <mat-error>Nome deve ter no mínimo 10 caracteres</mat-error>
+        }
+        @else if (filterForm.get('nome').hasError('maxlength') && filterForm.get('nome').touched) {
+            <mat-error>Nome deve ter no máximo 100 caracteres</mat-error>
+        }
     </mat-form-field>
     <mat-form-field>
         <mat-label>Início das Aulas</mat-label>

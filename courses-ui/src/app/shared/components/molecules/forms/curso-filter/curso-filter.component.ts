@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'curso-filter',
-    imports:[CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatRadioModule],
+  imports:[CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatRadioModule],
   templateUrl: './curso-filter.component.html',
   styleUrl: './curso-filter.component.scss'
 })

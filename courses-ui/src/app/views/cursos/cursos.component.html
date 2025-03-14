@@ -10,7 +10,7 @@
     <button mat-flat-button color="primary" (click)="applyFilter()">Filtrar</button>
 </div>
 @if (cursos) {
-    <cursos-list [cursos]="cursos.content" (reload)="applyFilter()"></cursos-list>
+    <cursos-list [cursos]="cursos.content" (onEdit)="onClickEdit($event)" (reload)="applyFilter()"></cursos-list>
     <mat-paginator
         [length]="cursos.totalElements"
         [pageSize]="size"

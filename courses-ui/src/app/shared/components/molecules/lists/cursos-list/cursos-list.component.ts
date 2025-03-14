@@ -5,10 +5,12 @@ import { CursoService } from '../../../../../core/services/curso.service';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { PipesModule } from '../../../../pipes/pipes.module';
 
 @Component({
   selector: 'cursos-list',
-    imports: [CommonModule, MatTableModule, MatIconModule],
+    imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule],
   templateUrl: './cursos-list.component.html',
   styleUrl: './cursos-list.component.scss'
 })
@@ -24,6 +26,9 @@ export class CursosListComponent {
   }
 
   @Output()
+  public readonly onEdit: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
   public readonly reload: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
@@ -31,7 +36,7 @@ export class CursosListComponent {
   ) { }
 
   public onClickEdit(id: number): void {
-
+    this.onEdit.emit(id);
   }
 
   public onClickDelete(id: number): void {

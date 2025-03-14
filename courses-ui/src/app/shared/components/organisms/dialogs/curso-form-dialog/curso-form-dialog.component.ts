@@ -24,8 +24,7 @@ type CursoFormDialogData = {
       <button mat-stroked-button color="warn" mat-dialog-close>Fechar</button>
       <button mat-flat-button color="primary" (click)="onClickSave()">Salvar</button>
     </mat-dialog-actions>
-  `,
-  styleUrl: './../dialog.styles.scss'
+  `
 })
 export class CursoFormDialogComponent {
 
@@ -96,8 +95,8 @@ export class CursoFormDialogComponent {
         inicioAulas: [curso?.inicioAulas, [Validators.required]],
         fimAulas: [curso?.fimAulas, [Validators.required]],
         ativo: [curso?.ativo],
-        createdAt: [curso?.createdAt],
-        updatedAt: [curso?.updatedAt]
+        createdAt: [{ value: curso?.createdAt, disabled: true }],
+        updatedAt: [{ value: curso?.updatedAt, disabled: true }]
       })
     );
   }
