@@ -11,6 +11,7 @@ import { AlunoService } from '../../../../../core/services/aluno.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from '../../../../pipes/pipes.module';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'alunos-list',
@@ -39,6 +40,7 @@ export class AlunosListComponent implements OnInit {
 
   constructor(
     private readonly applicationService: ApplicationService,
+    private readonly toastrService: ToastrService,
     private readonly alunoService: AlunoService
   ) { }
 
@@ -61,6 +63,7 @@ export class AlunosListComponent implements OnInit {
     this.alunoService.delete(id)
       .subscribe(() => {
         this.reload.emit();
+        this.toastrService.success('Aluno excluído com sucesso!');
       });
   }
 

@@ -7,6 +7,7 @@ import { Optional } from '../../../../../core/utils/optional';
 import { Aluno } from '../../../../../core/models/aluno.model';
 import { acceptTrueOrElse } from '../../../../../core/utils/functions';
 import { MatButtonModule } from '@angular/material/button';
+import { ToastrService } from 'ngx-toastr';
 
 type AlunoFormDialogData = {
   alunoId?: number;
@@ -35,6 +36,7 @@ export class AlunoFormDialogComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
+    private readonly toastrService: ToastrService,
     private readonly alunoService: AlunoService
   ) { }
 
@@ -76,6 +78,7 @@ export class AlunoFormDialogComponent implements OnInit {
 
   private onPersistSuccess(): void {
     this.closeDialog();
+    this.toastrService.success('Aluno salvo com sucesso!');
   }
 
   private onFormInvalid(form: FormGroup): void {

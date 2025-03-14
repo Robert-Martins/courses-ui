@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from '../../../../pipes/pipes.module';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'cursos-list',
@@ -32,6 +33,7 @@ export class CursosListComponent {
   public readonly reload: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
+    private readonly toastrService: ToastrService,
     private readonly cursoService: CursoService
   ) { }
 
@@ -43,6 +45,7 @@ export class CursosListComponent {
     this.cursoService.delete(id)
       .subscribe(() => {
         this.reload.emit();
+        this.toastrService.success('Curso excluído com sucesso!');
       });
   }
 }

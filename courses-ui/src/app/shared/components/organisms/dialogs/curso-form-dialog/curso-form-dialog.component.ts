@@ -7,6 +7,7 @@ import { Optional } from '../../../../../core/utils/optional';
 import { Curso } from '../../../../../core/models/curso.model';
 import { acceptTrueOrElse } from '../../../../../core/utils/functions';
 import { MatButtonModule } from '@angular/material/button';
+import { ToastrService } from 'ngx-toastr';
 
 type CursoFormDialogData = {
   cursoId?: number;
@@ -34,6 +35,7 @@ export class CursoFormDialogComponent {
   public readonly cursoForm: ModelSignal<FormGroup> = model(null);
 
   constructor(
+    private readonly toastrService: ToastrService,
     private readonly fb: FormBuilder,
     private readonly cursoService: CursoService
   ) { }
@@ -76,6 +78,7 @@ export class CursoFormDialogComponent {
 
   private onPersistSuccess(): void {
     this.closeDialog();
+    this.toastrService.success('Curso salvo com sucesso!');
   }
 
   private onFormInvalid(form: FormGroup): void {
