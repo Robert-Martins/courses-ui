@@ -1,5 +1,6 @@
 package com.robert.martins.courses_ui.presentation.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robert.martins.courses_ui.domain.models.Aluno;
 import com.robert.martins.courses_ui.infrastructure.base.BaseEntityDto;
 import com.robert.martins.courses_ui.infrastructure.vo.enums.SituacaoAluno;
@@ -21,6 +22,7 @@ public class AlunoDto extends BaseEntityDto<Aluno> {
     private String nome;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDate dataNascimento;
 
     @NotNull

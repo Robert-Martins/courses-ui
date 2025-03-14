@@ -1,5 +1,6 @@
 package com.robert.martins.courses_ui.presentation.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robert.martins.courses_ui.domain.models.Curso;
 import com.robert.martins.courses_ui.infrastructure.base.BaseEntityDto;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,9 +21,11 @@ public class CursoDto extends BaseEntityDto<Curso> {
     private String nome;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime inicioAulas;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime fimAulas;
 
     @NotNull
