@@ -11,6 +11,8 @@ import { CursosListComponent } from '../../shared/components/molecules/lists/cur
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { CursoFormDialogComponent } from '../../shared/components/organisms/dialogs/curso-form-dialog/curso-form-dialog.component';
 
 @Component({
   selector: 'app-cursos',
@@ -31,6 +33,7 @@ export class CursosComponent implements OnInit, OnDestroy {
   constructor(
       private readonly localStorageService: LocalStorageService,
       private readonly fb: FormBuilder,
+      private readonly dialog: MatDialog,
       private readonly cursoService: CursoService
     ) { }
 
@@ -45,7 +48,15 @@ export class CursosComponent implements OnInit, OnDestroy {
   }
 
   public onClickAdd(): void {
-
+    this.dialog.open(
+      CursoFormDialogComponent,
+      {
+        width: '400px'
+      }
+    )
+      .afterClosed()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((bool: boolean) => bool && this.findAllCursos());
   }
 
   public applyFilter(): void {

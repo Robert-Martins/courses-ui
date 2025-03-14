@@ -11,6 +11,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AlunoFormDialogComponent } from '../../shared/components/organisms/dialogs/aluno-form-dialog/aluno-form-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-alunos',
@@ -31,6 +33,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
   constructor(
       private readonly localStorageService: LocalStorageService,
       private readonly fb: FormBuilder,
+      private readonly dialog: MatDialog,
       private readonly alunoService: AlunoService
     ) { }
 
@@ -45,7 +48,15 @@ export class AlunosComponent implements OnInit, OnDestroy {
   }
 
   public onClickAdd(): void {
-
+    this.dialog.open(
+      AlunoFormDialogComponent,
+      {
+        width: '400px'
+      }
+    )
+      .afterClosed()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((bool: boolean) => bool && this.findAllAlunos());
   }
 
   public applyFilter(): void {
