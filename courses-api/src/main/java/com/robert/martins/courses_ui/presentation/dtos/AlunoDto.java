@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class AlunoDto extends BaseEntityDto<Aluno> {
 
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDate dataNascimento;
+    private LocalDateTime dataNascimento;
 
     @NotNull
     @NotEmpty

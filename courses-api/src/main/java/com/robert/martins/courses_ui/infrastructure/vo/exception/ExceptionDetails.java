@@ -1,5 +1,6 @@
 package com.robert.martins.courses_ui.infrastructure.vo.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -19,6 +20,7 @@ public class ExceptionDetails {
 
     private String className;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime timestamp;
 
     @Override

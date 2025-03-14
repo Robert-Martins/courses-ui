@@ -39,8 +39,6 @@ public class CursoService implements ICursoService {
                 pageable,
                 cursoFilter.id(),
                 cursoFilter.nome(),
-                cursoFilter.inicioAulas(),
-                cursoFilter.fimAulas(),
                 cursoFilter.ativo()
         ).map(Curso::mapEntityToDto);
     }
@@ -52,8 +50,8 @@ public class CursoService implements ICursoService {
     }
 
     @Override
-    public Boolean existsById(Integer id) {
-        return this.cursoRepository.existsById(id);
+    public Boolean existsActiveById(Integer id) {
+        return this.cursoRepository.existsActiveById(id);
     }
 
     @Override

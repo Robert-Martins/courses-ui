@@ -53,17 +53,18 @@ public class AlunoService implements IAlunoService {
                 pageable,
                 alunoFilter.id(),
                 alunoFilter.nome(),
-                alunoFilter.dataNascimento(),
                 alunoFilter.cpf(),
-                alunoFilter.situacao(),
+                Optional.ofNullable(alunoFilter.situacao()).map(Enum::name).orElse(null),
                 alunoFilter.cursoId()
         ).map(Aluno::mapEntityToDto);
     }
 
     @Override
     public AlunoDto findById(Integer id) {
-        return this.findStudentById(id)
-                .mapEntityToDto();
+        return this.appendCourseToStudent(
+                this.findStudentById(id)
+                        .mapEntityToDto()
+        );
     }
 
     @Override
@@ -89,6 +90,12 @@ public class AlunoService implements IAlunoService {
     public void delete(Integer id) {
         this.validateStudentId(id);
         this.alunoRepository.deleteById(id);
+    }
+
+    private AlunoDto appendCourseToStudent(AlunoDto aluno) {
+        this.alunoRepository.findCourseIdById(aluno.getId())
+                .ifPresent(aluno::setCursoId);
+        return aluno;
     }
 
     private void validateStudentMustNotHaveId(Integer id) {
@@ -134,7 +141,7 @@ public class AlunoService implements IAlunoService {
                 () -> new BadRequestException(COURSE_ID_NOT_INFORMED)
         );
         Functions.acceptFalseThrows(
-                this.cursoService.existsById(cursoId),
+                this.cursoService.existsActiveById(cursoId),
                 () -> new NotFoundException(COURSE_NOT_FOUND)
         );
     }

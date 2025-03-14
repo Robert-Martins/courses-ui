@@ -13,7 +13,7 @@ public interface ICursoService {
 
     CursoDto findById(Integer id);
 
-    Boolean existsById(Integer id);
+    Boolean existsActiveById(Integer id);
 
     void update(CursoDto cursoDto);
 

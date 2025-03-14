@@ -18,8 +18,6 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
                     "WHERE " +
                     "(:id IS NULL OR c.id = :id) AND " +
                     "(:nome IS NULL OR :nome = '' OR c.nome ILIKE CONCAT('%', :nome, '%')) AND " +
-                    "(:inicioAulas IS NULL OR c.inicio_aulas >= :inicioAulas) AND " +
-                    "(:fimAulas IS NULL OR c.fim_aulas <= :fimAulas) AND " +
                     "(:ativo IS NULL OR c.ativo = :ativo)",
             nativeQuery = true
     )
@@ -27,9 +25,17 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
             Pageable pageable,
             @Param("id") Integer id,
             @Param("nome") String nome,
-            @Param("inicioAulas") LocalDateTime inicioAulas,
-            @Param("fimAulas") LocalDateTime fimAulas,
             @Param("ativo") Boolean ativo
     );
+
+    @Query(
+            value = "SELECT CASE WHEN COUNT(c.id) > 0 THEN true ELSE false END " +
+                    "FROM tb_cursos c " +
+                    "WHERE " +
+                    "c.id = :id AND " +
+                    "c.ativo = true",
+            nativeQuery = true
+    )
+    Boolean existsActiveById(Integer id);
 
 }
