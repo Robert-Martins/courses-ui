@@ -9,10 +9,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'aluno-filter',
-  imports:[CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatSelectModule],
+  imports:[CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatSelectModule, NgxMaskDirective],
   templateUrl: './aluno-filter.component.html',
   styleUrl: './aluno-filter.component.scss'
 })

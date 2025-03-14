@@ -20,7 +20,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>CPF</mat-label>
-        <input matInput placeholder="CPF" formControlName="cpf">
+        <input matInput placeholder="CPF" formControlName="cpf" mask="000.000.000-00">
         @if (alunoForm.get('cpf').hasError('required') && alunoForm.get('cpf').touched) {
             <mat-error>CPF é obrigatório</mat-error>
         }

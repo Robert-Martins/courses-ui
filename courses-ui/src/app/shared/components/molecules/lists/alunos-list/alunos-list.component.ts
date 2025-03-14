@@ -12,10 +12,11 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from '../../../../pipes/pipes.module';
 import { ToastrService } from 'ngx-toastr';
+import { NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'alunos-list',
-  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule, NgxMaskPipe],
   templateUrl: './alunos-list.component.html',
   styleUrl: './alunos-list.component.scss'
 })
