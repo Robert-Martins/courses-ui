@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,7 +24,7 @@ public class Aluno extends BaseEntity {
     private String nome;
 
     @Column(name = "data_nascimento")
-    private LocalDate dataNascimento;
+    private LocalDateTime dataNascimento;
 
     @Column(name = "cpf")
     private String cpf;
