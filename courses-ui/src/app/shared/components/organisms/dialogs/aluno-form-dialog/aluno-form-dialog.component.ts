@@ -24,8 +24,7 @@ type AlunoFormDialogData = {
       <button mat-stroked-button color="warn" mat-dialog-close>Fechar</button>
       <button mat-flat-button color="primary" (click)="onClickSave()">Salvar</button>
     </mat-dialog-actions>
-  `,
-  styleUrl: './../dialog.styles.scss'
+  `
 })
 export class AlunoFormDialogComponent implements OnInit {
 
@@ -97,8 +96,8 @@ export class AlunoFormDialogComponent implements OnInit {
         dataNascimento: [aluno?.dataNascimento, [Validators.required]],
         situacao: [aluno?.situacao, [Validators.required]],
         cursoId: [aluno?.cursoId, [Validators.required]],
-        createdAt: [aluno?.createdAt],
-        updatedAt: [aluno?.updatedAt]
+        createdAt: [{ value: aluno?.createdAt, disabled: true }],
+        updatedAt: [{ value: aluno?.updatedAt, disabled: true }]
       })
     );
   }

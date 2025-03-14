@@ -10,7 +10,7 @@
     <button mat-flat-button color="primary" (click)="applyFilter()">Filtrar</button>
 </div>
 @if (alunos) {
-    <alunos-list [alunos]="alunos.content" (reload)="applyFilter()"></alunos-list>
+    <alunos-list [alunos]="alunos.content" (onEdit)="onClickEdit($event)" (reload)="applyFilter()"></alunos-list>
     <mat-paginator
         [length]="alunos.totalElements"
         [pageSize]="size"

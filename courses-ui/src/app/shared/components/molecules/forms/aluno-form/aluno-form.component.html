@@ -1,1 +1,61 @@
-<p>aluno-form works!</p>
+<ng-container *ngIf="alunoForm$ | async as alunoForm" [formGroup]="alunoForm">
+    @if (created) {
+        <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="ID" formControlName="id" readonly>
+        </mat-form-field>
+    }
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome">
+        @if (alunoForm.get('nome').hasError('required') && alunoForm.get('nome').touched) {
+            <mat-error>Nome é obrigatório</mat-error>
+        }
+        @else if (alunoForm.get('nome').hasError('minlength') && alunoForm.get('nome').touched) {
+            <mat-error>Nome deve ter no mínimo 10 caracteres</mat-error>
+        }
+        @else if (alunoForm.get('nome').hasError('maxlength') && alunoForm.get('nome').touched) {
+            <mat-error>Nome deve ter no máximo 100 caracteres</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="CPF" formControlName="cpf">
+        @if (alunoForm.get('cpf').hasError('required') && alunoForm.get('cpf').touched) {
+            <mat-error>CPF é obrigatório</mat-error>
+        }
+        @else if (alunoForm.get('cpf').hasError('minlength') && alunoForm.get('cpf').touched) {
+            <mat-error>CPF deve ter no mínimo 11 caracteres</mat-error>
+        }
+        @else if (alunoForm.get('cpf').hasError('maxlength') && alunoForm.get('cpf').touched) {
+            <mat-error>CPF deve ter no máximo 14 caracteres</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="dataNascimentoPicker" formControlName="dataNascimento">
+        <mat-datepicker-toggle matSuffix [for]="dataNascimentoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataNascimentoPicker></mat-datepicker>
+        @if (alunoForm.get('dataNascimento').hasError('required') && alunoForm.get('dataNascimento').touched) {
+            <mat-error>Data de Nascimento é obrigatória</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Situação</mat-label>
+        <mat-select formControlName="situacao">
+            <mat-option *ngFor="let situacao of alunoSituacoes$ | async" [value]="situacao.name">
+                {{ situacao.description }}
+            </mat-option>
+        </mat-select>
+        @if (alunoForm.get('situacao').hasError('required') && alunoForm.get('situacao').touched) {
+            <mat-error>Situação é obrigatória</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Curso</mat-label>
+        <input matInput formControlName="cursoId" type="number" [readonly]="created">
+        @if (alunoForm.get('cursoId').hasError('required') && alunoForm.get('cursoId').touched) {
+            <mat-error>Curso é obrigatório</mat-error>
+        }
+    </mat-form-field>
+</ng-container>

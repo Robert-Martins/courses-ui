@@ -74,7 +74,7 @@ export class CursosComponent implements OnInit, OnDestroy {
   private findAllCursos(): void {
     const filter: CursoFilter = this.filterForm.value;
   
-    this.cursoService.findAll(this.page, this.size, 'id,asc', filter)
+    this.cursoService.findAll(this.page, this.size, 'id,desc', filter)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe({
         next: (data: Page<Curso>) => this.cursos = data,
@@ -107,8 +107,6 @@ export class CursosComponent implements OnInit, OnDestroy {
     this.filterForm = this.fb.group({
       id: [alunoFilter?.id, [Validators.min(1)]],
       nome: [alunoFilter?.nome, [Validators.minLength(10), Validators.maxLength(100)]],
-      inicioAulas: [alunoFilter?.inicioAulas],
-      fimAulas: [alunoFilter?.fimAulas],
       ativo: [alunoFilter?.ativo],
     });
   }

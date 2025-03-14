@@ -48,15 +48,11 @@ export class AlunosComponent implements OnInit, OnDestroy {
   }
 
   public onClickAdd(): void {
-    this.dialog.open(
-      AlunoFormDialogComponent,
-      {
-        width: '400px'
-      }
-    )
-      .afterClosed()
-      .pipe(takeUntil(this.onDestroy$))
-      .subscribe((bool: boolean) => bool && this.findAllAlunos());
+    this.openFormDialog();
+  }
+
+  public onClickEdit(id: any): void {
+    this.openFormDialog(id);
   }
 
   public applyFilter(): void {
@@ -78,12 +74,27 @@ export class AlunosComponent implements OnInit, OnDestroy {
   private findAllAlunos(): void {
     const filter: AlunoFilter = this.filterForm.value;
   
-    this.alunoService.findAll(this.page, this.size, 'id,asc', filter)
+    this.alunoService.findAll(this.page, this.size, 'id,desc', filter)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe({
         next: (data: Page<Aluno>) => this.alunos = data,
         error: () => this.alunos = null,
       });
+  }
+
+  private openFormDialog(alunoId: number = null): void {
+    this.dialog.open(
+      AlunoFormDialogComponent,
+      {
+        width: '400px',
+        data: {
+          alunoId
+        }
+      }
+    )
+      .afterClosed()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((bool: boolean) => bool && this.findAllAlunos());
   }
 
   private checkCache(): void {
@@ -97,7 +108,6 @@ export class AlunosComponent implements OnInit, OnDestroy {
       id: [alunoFilter?.id],
       nome: [alunoFilter?.nome],
       cpf: [alunoFilter?.cpf],
-      dataNascimento: [alunoFilter?.dataNascimento],
       situacao: [alunoFilter?.situacao],
       cursoId: [alunoFilter?.cursoId]
     });

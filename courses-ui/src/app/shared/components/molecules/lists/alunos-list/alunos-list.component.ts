@@ -9,10 +9,12 @@ import { Optional } from '../../../../../core/utils/optional';
 import { MatIconModule } from '@angular/material/icon';
 import { AlunoService } from '../../../../../core/services/aluno.service';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { PipesModule } from '../../../../pipes/pipes.module';
 
 @Component({
   selector: 'alunos-list',
-  imports: [CommonModule, MatTableModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule],
   templateUrl: './alunos-list.component.html',
   styleUrl: './alunos-list.component.scss'
 })
@@ -28,6 +30,9 @@ export class AlunosListComponent implements OnInit {
   public set alunos(value: Aluno[]) {
     this.alunos$.next(value);
   }
+
+  @Output()
+  public readonly onEdit: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
   public readonly reload: EventEmitter<number> = new EventEmitter<number>();
@@ -49,7 +54,7 @@ export class AlunosListComponent implements OnInit {
   }
 
   public onClickEdit(id: number): void {
-
+    this.onEdit.emit(id);
   }
 
   public onClickDelete(id: number): void {

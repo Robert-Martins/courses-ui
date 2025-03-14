@@ -13,18 +13,6 @@
             <mat-error>Nome deve ter no máximo 100 caracteres</mat-error>
         }
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Início das Aulas</mat-label>
-        <input matInput [matDatepicker]="inicioAulasPicker" placeholder="Início das Aulas" formControlName="inicioAulas">
-        <mat-datepicker-toggle matSuffix [for]="inicioAulasPicker"></mat-datepicker-toggle>
-        <mat-datepicker #inicioAulasPicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Fim das Aulas</mat-label>
-        <input matInput [matDatepicker]="fimAulasPicker" placeholder="Fim das Aulas" formControlName="fimAulas">
-        <mat-datepicker-toggle matSuffix [for]="fimAulasPicker"></mat-datepicker-toggle>
-        <mat-datepicker #fimAulasPicker></mat-datepicker>
-    </mat-form-field>
     <mat-radio-group formControlName="ativo">
         <mat-radio-button [value]="true">Ativo</mat-radio-button>
         <mat-radio-button [value]="false">Inativo</mat-radio-button>

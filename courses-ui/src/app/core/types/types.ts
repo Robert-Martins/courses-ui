@@ -37,7 +37,6 @@ export type AlunoFilter = {
     id?: number;
     nome?: string;
     cpf?: string;
-    dataNascimento?: Date;
     situacao?: string;
     cursoId?: number;
 }
@@ -45,7 +44,5 @@ export type AlunoFilter = {
 export type CursoFilter = {
     id?: number;
     nome?: string;
-    inicioAulas?: Date;
-    fimAulas?: Date;
     ativo?: boolean;
 }

@@ -40,8 +40,6 @@ export class CursoService {
           sort: sort,
           id: Optional.ofNullable(cursoFilter.id).map(id => id.toString()).orElse(''),
           nome: Optional.ofNullable(cursoFilter.nome).orElse(''),
-          inicioAulas: Optional.ofNullable(cursoFilter.inicioAulas).map(inicioAulas => inicioAulas.toISOString()).orElse(''),
-          fimAulas: Optional.ofNullable(cursoFilter.fimAulas).map(fimAulas => fimAulas.toISOString()).orElse(''),
           ativo: Optional.ofNullable(cursoFilter.ativo).map(ativo => ativo.toString()).orElse('')
         }
       }

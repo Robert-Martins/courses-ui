@@ -41,7 +41,6 @@ export class AlunoService {
           id: Optional.ofNullable(alunoFilter.id).map(id => id.toString()).orElse(''),
           nome: Optional.ofNullable(alunoFilter.nome).orElse(''),
           cpf: Optional.ofNullable(alunoFilter.cpf).orElse(''),
-          dataNascimento: Optional.ofNullable(alunoFilter.dataNascimento).map(dataNascimento => dataNascimento.toISOString()).orElse(''),
           situacao: Optional.ofNullable(alunoFilter.situacao).orElse(''),
           cursoId: Optional.ofNullable(alunoFilter.cursoId).map(cursoId => cursoId.toString()).orElse('')
         }
