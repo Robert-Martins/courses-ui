@@ -13,10 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { CursoFormDialogComponent } from '../../shared/components/organisms/dialogs/curso-form-dialog/curso-form-dialog.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-cursos',
-  imports: [CursoFilterComponent, CursosListComponent, MatPaginatorModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule],
+  imports: [CursoFilterComponent, CursosListComponent, MatPaginatorModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatTooltip],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss'
 })

@@ -13,10 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AlunoFormDialogComponent } from '../../shared/components/organisms/dialogs/aluno-form-dialog/aluno-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-alunos',
-  imports: [AlunoFilterComponent, AlunosListComponent, MatPaginatorModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule],
+  imports: [AlunoFilterComponent, AlunosListComponent, MatPaginatorModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatTooltip],
   templateUrl: './alunos.component.html',
   styleUrl: './alunos.component.scss'
 })

@@ -8,10 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from '../../../../pipes/pipes.module';
 import { ToastrService } from 'ngx-toastr';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'cursos-list',
-    imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule],
+    imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, PipesModule, MatTooltip],
   templateUrl: './cursos-list.component.html',
   styleUrl: './cursos-list.component.scss'
 })
@@ -45,7 +46,7 @@ export class CursosListComponent {
     this.cursoService.delete(id)
       .subscribe(() => {
         this.reload.emit();
-        this.toastrService.success('Curso excluído com sucesso!');
+        this.toastrService
       });
   }
 }

@@ -26,10 +26,10 @@
     <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
         <td mat-cell *matCellDef="let aluno">
-        <button mat-icon-button color="primary" (click)="onClickEdit(aluno.id)">
+        <button mat-icon-button color="primary" (click)="onClickEdit(aluno.id)" matTooltip="Editar aluno">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="onClickDelete(aluno.id)">
+        <button mat-icon-button color="warn" (click)="onClickDelete(aluno.id)" matTooltip="Excluir aluno">
             <mat-icon>delete</mat-icon>
         </button>
         </td>
